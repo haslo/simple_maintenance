@@ -1,0 +1,15 @@
+# MAINTENANCE-PAGE REDIRECT
+<IfModule mod_rewrite.c>
+ RewriteEngine on
+ RewriteCond %{REMOTE_ADDR} !^123\.456\.789\.000
+ RewriteCond %{REQUEST_URI} !/maintenance.html$ [NC]
+ RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]
+ RewriteCond %{REQUEST_URI} !^/robots\.txt$ [NC]
+ RewriteRule .* /maintenance.html [R=302,L]
+</IfModule>
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 77.28.160.71
